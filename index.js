@@ -16,7 +16,7 @@ const rules = {
 function configureAsError() {
   const result = {};
   Object.keys(rules).forEach((key) => {
-    result[`react-redux/${key}`] = 2;
+    result[`teactn/${key}`] = 2;
   });
   return result;
 }
@@ -28,23 +28,23 @@ module.exports = {
   rules,
   configs: {
     recommended: {
-      plugins: ['react-redux'],
+      plugins: ['teactn'],
       rules: {
-        'react-redux/connect-prefer-minimum-two-arguments': 0,
-        'react-redux/connect-prefer-named-arguments': 2,
-        'react-redux/mapDispatchToProps-prefer-parameters-names': 2,
-        'react-redux/mapDispatchToProps-prefer-shorthand': 2,
-        'react-redux/mapDispatchToProps-returns-object': 2,
-        'react-redux/mapStateToProps-no-store': 2,
-        'react-redux/mapStateToProps-prefer-hoisted': 2,
-        'react-redux/mapStateToProps-prefer-parameters-names': 2,
-        'react-redux/useSelector-prefer-selectors': 2,
-        'react-redux/no-unused-prop-types': 2,
-        'react-redux/prefer-separate-component-file': 1,
+        'teactn/connect-prefer-minimum-two-arguments': 0,
+        'teactn/connect-prefer-named-arguments': 2,
+        'teactn/mapDispatchToProps-prefer-parameters-names': 2,
+        'teactn/mapDispatchToProps-prefer-shorthand': 2,
+        'teactn/mapDispatchToProps-returns-object': 2,
+        'teactn/mapStateToProps-no-store': 2,
+        'teactn/mapStateToProps-prefer-hoisted': 2,
+        'teactn/mapStateToProps-prefer-parameters-names': 2,
+        'teactn/useSelector-prefer-selectors': 2,
+        'teactn/no-unused-prop-types': 2,
+        'teactn/prefer-separate-component-file': 1,
       },
     },
     all: {
-      plugins: ['react-redux'],
+      plugins: ['teactn'],
       rules: activeRulesConfig,
     },
   },

@@ -1,7 +1,7 @@
-#  Enforces that all mapDispatchToProps parameters have specific names. (react-redux/mapDispatchToProps-prefer-parameters-names)
+#  Enforces that all mapDispatchToProps parameters have specific names. (teactn/mapDispatchToProps-prefer-parameters-names)
 
-[react-redux mapStateToProps](https://github.com/reactjs/react-redux/blob/master/docs/api.md#connectmapstatetoprops-mapdispatchtoprops-mergeprops-options) function has 2 optional arguments:
-* state
+teactn mapStateToProps function has 2 optional arguments:
+* globalState
 * ownProps
 
 This rule enforces that all of the provided parameters should follow the above naming conventions.
@@ -15,7 +15,7 @@ const mapDispatchToProps = (anyOtherName) => {}
 ```
 
 ```js
-connect((state) => state, (anyOtherName) => {})(App)
+withGlobal((state) => state, (anyOtherName) => {})(App)
 ```
 
 The following patterns are considered correct:
@@ -37,5 +37,5 @@ const mapDispatchToProps = (dispatch) => {}
 ```
 
 ```js
-connect((state) => state, (dispatch, ownProps, moreArgs) => {})(App)
+withGlobal((state) => state, (dispatch, ownProps, moreArgs) => {})(App)
 ```

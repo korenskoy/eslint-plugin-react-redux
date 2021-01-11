@@ -22,7 +22,7 @@ ruleTester.run('mapDispatchToProps-returns-object', rule, {
     'const mapDispatchToProps = actionsMap',
     'const mapDispatchToProps = {...actions}',
     'const mapDispatchToProps = {anAction: anAction}',
-    `export default connect(
+    `export default withGlobal(
       state => ({
         productsList: state.Products.productsList,
       }),
@@ -47,7 +47,7 @@ ruleTester.run('mapDispatchToProps-returns-object', rule, {
           }
         }
     }`,
-    'connect(null, null)(App)',
+    'withGlobal(null, null)(App)',
     'function mapDispatchToProps () {return aThing}',
     `function mapDispatchToProps(dispatch) {
       return { actions: bindActionCreators(actionCreators, dispatch) }
@@ -68,7 +68,7 @@ ruleTester.run('mapDispatchToProps-returns-object', rule, {
       },
     ],
   }, {
-    code: `export default connect(
+    code: `export default withGlobal(
               state => ({
                 productsList: state.Products.productsList,
               }),
@@ -81,7 +81,7 @@ ruleTester.run('mapDispatchToProps-returns-object', rule, {
       },
     ],
   }, {
-    code: `export default connect(
+    code: `export default withGlobal(
               state => ({
                 productsList: state.Products.productsList,
               }),

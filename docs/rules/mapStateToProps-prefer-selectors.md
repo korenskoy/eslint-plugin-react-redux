@@ -1,4 +1,4 @@
-#  Enforces that all mapStateToProps properties use selector functions. (react-redux/mapStateToProps-prefer-selectors)
+#  Enforces that all mapStateToProps properties use selector functions. (teactn/mapStateToProps-prefer-selectors)
 
 Using selectors in `mapStateToProps` to pull data from the store or [compute derived data](https://redux.js.org/recipes/computing-derived-data#composing-selectors) allows you to uncouple your containers from the state architecture and more easily enable memoization. This rule will ensure that every prop utilizes a selector.
 
@@ -11,8 +11,8 @@ const mapStateToProps = (state) => { x: state.property }
 ```
 
 ```js
-connect(function(state) { 
-    return { 
+withGlobal(function(state) {
+    return {
         y: state.other.property
     }
 }, null)(App)
@@ -27,8 +27,8 @@ const mapStateToProps = (state) => { x: propertySelector(state) }
 
 ```js
 const getOtherProperty = (state) => state.other.property
-connect(function(state) { 
-    return { 
+withGlobal(function(state) {
+    return {
         y: getOtherProperty(state)
     }
 }, null)(App)
@@ -38,7 +38,7 @@ connect(function(state) {
 
 ```js
 ...
-"react-redux/mapStateToProps-prefer-selectors": [<enabled>, {
+"teactn/mapStateToProps-prefer-selectors": [<enabled>, {
   "matching": <string>
   "validateParams": <boolean>
 }]
@@ -51,7 +51,7 @@ If provided, validates the name of the selector functions against the RegExp pat
 ```js
     // .eslintrc
     {
-        "react-redux/mapStateToProps-prefer-selectors": ["error", { matching: "^.*Selector$"}]
+        "teactn/mapStateToProps-prefer-selectors": ["error", { matching: "^.*Selector$"}]
     }
 
     // container.js
@@ -64,7 +64,7 @@ If provided, validates the name of the selector functions against the RegExp pat
 ```js
     // .eslintrc
     {
-        "react-redux/mapStateToProps-prefer-selectors": ["error", { matching: "^get.*FromState$"}]
+        "teactn/mapStateToProps-prefer-selectors": ["error", { matching: "^get.*FromState$"}]
     }
 
     // container.js
@@ -80,7 +80,7 @@ Boolean to determine if the selectors use the correct params (`<selectorFunction
 ```js
     // .eslintrc
     {
-        "react-redux/mapStateToProps-prefer-selectors": ["error", { validateParams: true }]
+        "teactn/mapStateToProps-prefer-selectors": ["error", { validateParams: true }]
     }
 
     // container.js

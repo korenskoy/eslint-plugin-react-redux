@@ -1,8 +1,8 @@
-#  Enforces that mapDispatchToProps returns an object. (react-redux/mapDispatchToProps-returns-object)
+#  Enforces that mapDispatchToProps returns an object. (teactn/mapDispatchToProps-returns-object)
 
 Enforces that the mapDispatchToProps is an object or a function returning an object.
 
-*Note: All of the caught cases would have caused a runtime [warning](https://github.com/reactjs/react-redux/blob/master/src/utils/verifyPlainObject.js) by react-redux *  
+*Note: All of the caught cases would have caused a runtime by teactn *
 
 ## Rule details
 
@@ -13,7 +13,7 @@ const mapDispatchToProps = (dispatch) => dispatch(action())
 ```
 
 ```js
-connect((state) => state, (dispatch) => dispatch(action()))(App)
+withGlobal((state) => state, (dispatch) => dispatch(action()))(App)
 ```
 
 ```js
@@ -45,7 +45,7 @@ const mapDispatchToProps = (dispatch) => ({anAction: dispatch(anAction())})
 
 >If a function is passed, it will be given dispatch as the first parameter. It’s up to you to return an object that somehow uses dispatch to bind action creators in your own way.
 
-Below use case is likely not what you want but will not be enforced by this rule nor runtime react-redux check:
+Below use case is likely not what you want but will not be enforced by this rule nor runtime teactn check:
 
 ```js
 const mapDispatchToProps = () => ({
@@ -84,7 +84,7 @@ Note that if mapDispatchToProps is assigned a value of a variable there is no wa
 
 So both of below use cases will be considered correct by the rule event though the second one is technically incorrect.
 
-This one would be caught by a react-redux check.
+This one would be caught by a teactn check.
 
 ```js
 const actionsMap = {

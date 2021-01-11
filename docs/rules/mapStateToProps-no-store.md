@@ -1,4 +1,4 @@
-#  Enforces that mapStateToProps does not bind complete store to a component. (react-redux/mapStateToProps-no-store)
+#  Enforces that mapStateToProps does not bind complete store to a component. (teactn/mapStateToProps-no-store)
 
 Passing whole state to a component is a bad practice, triggering unnecessary re-renders. Additionally bad is passing around a mutable object that your component critically depends on preventing mutations to.
 Instead one should specify the properties actually used by a component.
@@ -22,7 +22,7 @@ const mapStateToProps = state => ({...state});
 ```
 
 ```js
-connect((state) => state, null)(App)
+withGlobal((state) => state, null)(App)
 ```
 
 The following patterns are correct:
@@ -40,7 +40,7 @@ const mapStateToProps = ({isActive}) => {isActive}
 ```
 
 ```js
-connect((state) => ({isActive: state.isActive}), null)(App)
+withGlobal((state) => ({isActive: state.isActive}), null)(App)
 ```
 
 ## Not supported use cases.

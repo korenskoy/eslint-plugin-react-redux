@@ -26,13 +26,13 @@ ruleTester.run('mapStateToProps-prefer-selectors', rule, {
     'const mapStateToProps = (state) => { doSomethingElse(); return { x: xSelector(state) }; }',
     'const mapStateToProps = function(state) { return { x: xSelector(state) }; }',
     'function mapStateToProps(state) { doSomethingElse(); return { x: xSelector(state) }; }',
-    'connect((state) => ({ x: xSelector(state) }), {})(Comp)',
+    'withGlobal((state) => ({ x: xSelector(state) }), {})(Comp)',
     'const mapStateToProps = () => ({ x: xSelector() })',
     'const mapStateToProps = function(state) { return { x: getX() }; }',
     'const mapStateToProps = function(state) { return { x: getX(state) }; }',
-    'connect((state, ownProps) => ({ x: selector() }), {})(Comp)',
-    'connect((state, ownProps) => ({ x: selector(state) }), {})(Comp)',
-    'connect((state, ownProps) => ({ x: selector(state, ownProps) }), {})(Comp)',
+    'withGlobal((state, ownProps) => ({ x: selector() }), {})(Comp)',
+    'withGlobal((state, ownProps) => ({ x: selector(state) }), {})(Comp)',
+    'withGlobal((state, ownProps) => ({ x: selector(state, ownProps) }), {})(Comp)',
     {
       code: 'const mapStateToProps = (state) => ({ x: xSelector(state) })',
       options: [{
@@ -46,7 +46,7 @@ ruleTester.run('mapStateToProps-prefer-selectors', rule, {
       }],
     },
     {
-      code: 'connect((state) => ({ x: selector(state) }), {})(Comp)',
+      code: 'withGlobal((state) => ({ x: selector(state) }), {})(Comp)',
       options: [{
         matching: '^selector$',
       }],
@@ -64,7 +64,7 @@ ruleTester.run('mapStateToProps-prefer-selectors', rule, {
       }],
     },
     {
-      code: 'connect(() => ({ x: selector(state) }), {})(Comp)',
+      code: 'withGlobal(() => ({ x: selector(state) }), {})(Comp)',
       options: [{
         validateParams: false,
       }],
@@ -123,7 +123,7 @@ ruleTester.run('mapStateToProps-prefer-selectors', rule, {
       },
     ],
   }, {
-    code: 'connect((state) => ({ x: state.x }), {})(Comp)',
+    code: 'withGlobal((state) => ({ x: state.x }), {})(Comp)',
     errors: [
       {
         message: 'mapStateToProps property "x" should use a selector function.',
@@ -146,7 +146,7 @@ ruleTester.run('mapStateToProps-prefer-selectors', rule, {
       message: 'mapStateToProps "x"\'s selector "getX" does not match "^.*Selector$".',
     }],
   }, {
-    code: 'connect((state) => ({ x: selectorr(state) }), {})(Comp)',
+    code: 'withGlobal((state) => ({ x: selectorr(state) }), {})(Comp)',
     options: [{
       matching: '^selector$',
     }],
@@ -169,17 +169,17 @@ ruleTester.run('mapStateToProps-prefer-selectors', rule, {
       message: 'mapStateToProps "x"\'s selector "getX" parameter #0 should be "state".',
     }],
   }, {
-    code: 'connect((state, ownProps) => ({ x: getX(state, notOwnProps) }), {})(Comp)',
+    code: 'withGlobal((state, ownProps) => ({ x: getX(state, notOwnProps) }), {})(Comp)',
     errors: [{
       message: 'mapStateToProps "x"\'s selector "getX" parameter #1 should be "ownProps".',
     }],
   }, {
-    code: 'connect((state2, ownProps) => ({ x: getX(state) }), {})(Comp)',
+    code: 'withGlobal((state2, ownProps) => ({ x: getX(state) }), {})(Comp)',
     errors: [{
       message: 'mapStateToProps "x"\'s selector "getX" parameter #0 should be "state2".',
     }],
   }, {
-    code: 'connect((state, ownProps2) => ({ x: getX(state, ownProps) }), {})(Comp)',
+    code: 'withGlobal((state, ownProps2) => ({ x: getX(state, ownProps) }), {})(Comp)',
     errors: [{
       message: 'mapStateToProps "x"\'s selector "getX" parameter #1 should be "ownProps2".',
     }],

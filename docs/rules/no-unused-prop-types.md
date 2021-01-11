@@ -1,4 +1,4 @@
-#  Extension of a react's no-unused-prop-types rule filtering out false positive used in redux context. (react-redux/no-unused-prop-types)
+#  Extension of a react's no-unused-prop-types rule filtering out false positive used in redux context. (teactn/no-unused-prop-types)
 
 [react/no-unused-prop-types](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-unused-prop-types.md)
 
@@ -6,7 +6,7 @@
 
  This rule fixes some of the false positive reported by the react rule
 
- In below example `react/no-unused-prop-types` would report  `myProp PropType is defined but prop is never used` while `react-redux/no-unused-prop-types` would correctly detect the usage of this prop within  `mapStateToProps`.
+ In below example `react/no-unused-prop-types` would report  `myProp PropType is defined but prop is never used` while `teactn/no-unused-prop-types` would correctly detect the usage of this prop within  `mapStateToProps`.
 
  ```js
   export const mapStateToProps = (state, ownProps) => ({
@@ -23,7 +23,7 @@
     myProp: PropTypes.string.isRequired
   };
 
-  export default connect(mapStateToProps)(MyComponent);
+  export default withGlobal(mapStateToProps)(MyComponent);
  ```
 
  # Implementation details and Limitations

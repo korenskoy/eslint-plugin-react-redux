@@ -22,23 +22,23 @@ describe('all rule files should be exported by the plugin', () => {
 describe('configurations', () => {
   it('should export a \'recommended\' configuration', () => {
     assert(plugin.configs.recommended);
-    assert(plugin.configs.recommended.plugins.includes('react-redux'));
+    assert(plugin.configs.recommended.plugins.includes('teactn'));
     Object.keys(plugin.configs.recommended.rules).forEach((configName) => {
-      assert.equal(configName.indexOf('react-redux/'), 0);
-      const ruleName = configName.substring('react-redux/'.length);
+      assert.equal(configName.indexOf('teactn/'), 0);
+      const ruleName = configName.substring('teactn/'.length);
       assert(plugin.rules[ruleName]);
     });
   });
   it('should export a \'all\' configuration', () => {
     assert(plugin.configs.all);
-    assert(plugin.configs.all.plugins.includes('react-redux'));
+    assert(plugin.configs.all.plugins.includes('teactn'));
     Object.keys(plugin.configs.all.rules).forEach((configName) => {
-      assert.equal(configName.indexOf('react-redux/'), 0);
+      assert.equal(configName.indexOf('teactn/'), 0);
       assert.equal(plugin.configs.all.rules[configName], 2);
     });
     ruleFiles.forEach((ruleName) => {
       const inDeprecatedRules = Boolean(plugin.deprecatedRules[ruleName]);
-      const inAllConfig = Boolean(plugin.configs.all.rules[`react-redux/${ruleName}`]);
+      const inAllConfig = Boolean(plugin.configs.all.rules[`teactn/${ruleName}`]);
       assert(inDeprecatedRules || inAllConfig);
     });
   });

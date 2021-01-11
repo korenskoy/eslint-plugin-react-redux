@@ -17,13 +17,13 @@ const ruleTester = new RuleTester({ parserOptions });
 ruleTester.run('connect-prefer-named-arguments', rule, {
   valid: [
     ...codeSamples,
-    'export default connect(null, mapDispatchToProps)(TodoApp)',
-    'connect(mapStateToProps, mapDispatchToProps, mergeProps, options)(Component)',
-    'connect(mapStateToProps, mapDispatchToProps)(Component)',
-    'connect()(TodoApp)',
+    'export default withGlobal(null, mapDispatchToProps)(TodoApp)',
+    'withGlobal(mapStateToProps, mapDispatchToProps, mergeProps, options)(Component)',
+    'withGlobal(mapStateToProps, mapDispatchToProps)(Component)',
+    'withGlobal()(TodoApp)',
   ],
   invalid: [{
-    code: 'connect(() => {}, () => {}, mergeProps, options)(Component)',
+    code: 'withGlobal(() => {}, () => {}, mergeProps, options)(Component)',
     errors: [
       {
         message: 'Connect function argument #0 should be named mapStateToProps',
@@ -32,7 +32,7 @@ ruleTester.run('connect-prefer-named-arguments', rule, {
       },
     ],
   }, {
-    code: 'connect({}, {})(Component)',
+    code: 'withGlobal({}, {})(Component)',
     errors: [
       {
         message: 'Connect function argument #0 should be named mapStateToProps',
@@ -41,7 +41,7 @@ ruleTester.run('connect-prefer-named-arguments', rule, {
       },
     ],
   }, {
-    code: 'connect(state => state)(TodoApp)',
+    code: 'withGlobal(state => state)(TodoApp)',
     errors: [
       {
         message: 'Connect function argument #0 should be named mapStateToProps',

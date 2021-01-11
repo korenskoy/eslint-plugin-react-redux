@@ -1,4 +1,4 @@
-#  Enforces that all useSelector hooks use named selector functions. (react-redux/useSelector-prefer-selectors)
+#  Enforces that all useSelector hooks use named selector functions. (teactn/useSelector-prefer-selectors)
 
 Using selectors in `useSelector` to pull data from the store or [compute derived data](https://redux.js.org/recipes/computing-derived-data#composing-selectors) allows you to decouple your containers from the state architecture and more easily enable memoization. This rule will ensure that every hook utilizes a named selector.
 
@@ -26,7 +26,7 @@ function Component() {
 
 ```js
 ...
-"react-redux/useSelector-prefer-selectors": [<enabled>, {
+"teactn/useSelector-prefer-selectors": [<enabled>, {
   "matching": <string>
   "validateParams": <boolean>
 }]
@@ -39,7 +39,7 @@ If provided, validates the name of the selector functions against the RegExp pat
 ```js
     // .eslintrc
     {
-        "react-redux/useSelector-prefer-selectors": ["error", { matching: "^.*Selector$"}]
+        "teactn/useSelector-prefer-selectors": ["error", { matching: "^.*Selector$"}]
     }
 
     // container.js
@@ -50,7 +50,7 @@ If provided, validates the name of the selector functions against the RegExp pat
 ```js
     // .eslintrc
     {
-        "react-redux/mapStateToProps-prefer-selectors": ["error", { matching: "^get.*FromState$"}]
+        "teactn/mapStateToProps-prefer-selectors": ["error", { matching: "^get.*FromState$"}]
     }
 
     // container.js

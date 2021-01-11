@@ -27,12 +27,12 @@ ruleTester.run('mapStateToProps-no-store', rule, {
       });
     `,
     'export default function observeStore(store) {return store;}',
-    'export default connect(() => {})(Alert)',
-    'export default connect(() => {})(Alert)',
-    'export default connect(null, null)(Alert)',
-    'connect((state) => ({isActive: state.isActive}), null)(App)',
-    'connect(null, null)(App)',
-    `connect(
+    'export default withGlobal(() => {})(Alert)',
+    'export default withGlobal(() => {})(Alert)',
+    'export default withGlobal(null, null)(Alert)',
+    'withGlobal((state) => ({isActive: state.isActive}), null)(App)',
+    'withGlobal(null, null)(App)',
+    `withGlobal(
           (state) => {
               return {
                   isActive: state.isActive
@@ -41,7 +41,7 @@ ruleTester.run('mapStateToProps-no-store', rule, {
           null
         )(App)
     `,
-    `connect(function(state){
+    `withGlobal(function(state){
               return {
                   isActive: state.isActive
               }
@@ -58,13 +58,13 @@ ruleTester.run('mapStateToProps-no-store', rule, {
     'const mapStateToProps = (state, ownProps) => {}',
     'const mapStateToProps = (state) => {isActive: state.isActive}',
     `const mapStateToProps = (state, ownProps) => {};
-      connect(mapStateToProps, null)(Alert);`,
+      withGlobal(mapStateToProps, null)(Alert);`,
     `const mapStateToProps = ({ header }) => ({
       isLoggedIn: header.user && header.user.isLoggedIn,
     }); `,
     'const mapStateToProps = ({header}, ownProps) => {header};',
-    'connect(({header}, ownProps) => {header})(App);',
-    'connect(({header}, {ownProp1}) => {header, ownProp1})(App);',
+    'withGlobal(({header}, ownProps) => {header})(App);',
+    'withGlobal(({header}, {ownProp1}) => {header, ownProp1})(App);',
   ],
   invalid: [{
     code: 'const mapStateToProps = (state) => state',
@@ -92,7 +92,7 @@ ruleTester.run('mapStateToProps-no-store', rule, {
       },
     ],
   }, {
-    code: `export default connect(
+    code: `export default withGlobal(
         (state) => {
             return {
                 state: state
@@ -110,7 +110,7 @@ ruleTester.run('mapStateToProps-no-store', rule, {
       },
     ],
   }, {
-    code: 'connect((state) => state, null)(App)',
+    code: 'withGlobal((state) => state, null)(App)',
     errors: [
       {
         message: 'mapStateToProps should not return complete store object',
@@ -118,7 +118,7 @@ ruleTester.run('mapStateToProps-no-store', rule, {
     ],
   }, {
     code: `const mapStateToProps = (state, ownProps) => state;
-      connect(mapStateToProps, null)(Alert);`,
+      withGlobal(mapStateToProps, null)(Alert);`,
     errors: [
       {
         message: 'mapStateToProps should not return complete store object',
@@ -132,7 +132,7 @@ ruleTester.run('mapStateToProps-no-store', rule, {
       },
     ],
   }, {
-    code: 'connect((state) => ({...state}), null)(App)',
+    code: 'withGlobal((state) => ({...state}), null)(App)',
     errors: [
       {
         message: 'mapStateToProps should not return complete store object',

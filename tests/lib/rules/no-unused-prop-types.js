@@ -34,7 +34,7 @@ ruleTester.run('no-unused-prop-types', rule, {
       myProp: PropTypes.string.isRequired
     };
 
-    export default connect(mapStateToProps)(MyComponent);`,
+    export default withGlobal(mapStateToProps)(MyComponent);`,
 
     `export const mapStateToProps = (state, ownProps) => {
       const myProp = ownProps.myProp;
@@ -51,7 +51,7 @@ ruleTester.run('no-unused-prop-types', rule, {
       myProp: PropTypes.string.isRequired
     };
 
-    export default connect(mapStateToProps)(MyComponent);`,
+    export default withGlobal(mapStateToProps)(MyComponent);`,
 
     `export const mapStateToProps = (state, ownProps) => ({
       myData: getMyData(state, ownProps.myProp),
@@ -67,7 +67,7 @@ ruleTester.run('no-unused-prop-types', rule, {
       myProp: PropTypes.string.isRequired
     };
 
-    export default connect(mapStateToProps)(MyComponent);`,
+    export default withGlobal(mapStateToProps)(MyComponent);`,
 
     `export const mapDispatchToProps = (state, ownProps) => ({
       myData: getMyData(state, ownProps.myProp),
@@ -83,7 +83,7 @@ ruleTester.run('no-unused-prop-types', rule, {
       myProp: PropTypes.string.isRequired
     };
 
-    export default connect(mapStateToProps)(MyComponent);`,
+    export default withGlobal(mapStateToProps)(MyComponent);`,
     `export const mapStateToProps = (state, {myProp}) => ({
       myData: getMyData(state, myProp.z),
     });
@@ -98,7 +98,7 @@ ruleTester.run('no-unused-prop-types', rule, {
       myProp: PropTypes.string.isRequired
     };
 
-    export default connect(mapStateToProps)(MyComponent);`,
+    export default withGlobal(mapStateToProps)(MyComponent);`,
     `const selectorFoo = (state) => ({isFetching: false, name: 'Foo', isDeleting: false, deltedId: ''});
     const selectorBar = (state) => ({ isFetching: false, name: 'Bar'});
     export const mapStateToProps = (state) => {
@@ -133,7 +133,7 @@ ruleTester.run('no-unused-prop-types', rule, {
       isFetchingBar: PropTypes.bool.isRequired,
     };
 
-    export default connect(mapStateToProps)(MyComponent);`,
+    export default withGlobal(mapStateToProps)(MyComponent);`,
   ],
   invalid: [{
     code: `export const mapStateToProps = (state) => ({
@@ -150,7 +150,7 @@ ruleTester.run('no-unused-prop-types', rule, {
       myProp: PropTypes.string.isRequired
     };
 
-    export default connect(mapStateToProps)(MyComponent);`,
+    export default withGlobal(mapStateToProps)(MyComponent);`,
 
     errors: [
       {
@@ -173,7 +173,7 @@ ruleTester.run('no-unused-prop-types', rule, {
       notUsedProp:  PropTypes.string.isRequired,
     };
 
-    export default connect(mapStateToProps)(MyComponent);`,
+    export default withGlobal(mapStateToProps)(MyComponent);`,
 
     errors: [
       {
@@ -195,7 +195,7 @@ ruleTester.run('no-unused-prop-types', rule, {
       myProp: PropTypes.string.isRequired
     };
 
-    export default connect(mapStateToProps)(MyComponent);`,
+    export default withGlobal(mapStateToProps)(MyComponent);`,
 
     errors: [
       {
@@ -218,7 +218,7 @@ ruleTester.run('no-unused-prop-types', rule, {
       notUsedProp:  PropTypes.string.isRequired,
     };
 
-    export default connect(mapStateToProps)(MyComponent);`,
+    export default withGlobal(mapStateToProps)(MyComponent);`,
 
     errors: [
       {
@@ -242,7 +242,7 @@ ruleTester.run('no-unused-prop-types', rule, {
       notUsedProp:  PropTypes.string.isRequired,
     };
 
-    export default connect(mapStateToProps)(MyComponent);`,
+    export default withGlobal(mapStateToProps)(MyComponent);`,
 
     errors: [
       {

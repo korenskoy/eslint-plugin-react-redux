@@ -32,14 +32,14 @@ ruleTester.run('mapDispatchToProps-prefer-shorthand', rule, {
     'const mapDispatchToProps = actionsMap',
     'const mapDispatchToProps = {...actions}',
     'const mapDispatchToProps = {anAction: anAction}',
-    `export default connect(
+    `export default withGlobal(
       state => ({
         productsList: state.Products.productsList,
       }),
       { fetchProducts }
     )(Products);
     `,
-    'connect(null, null)(App)',
+    'withGlobal(null, null)(App)',
     'function mapDispatchToProps () {return aThing}',
   ],
   invalid: [{

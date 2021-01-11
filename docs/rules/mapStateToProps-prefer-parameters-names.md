@@ -1,6 +1,6 @@
-#  Enforces that all mapStateToProps parameters have specific names. (react-redux/mapStateToProps-prefer-parameters-names)
+#  Enforces that all mapStateToProps parameters have specific names. (teactn/mapStateToProps-prefer-parameters-names)
 
-[react-redux mapStateToProps](https://github.com/reactjs/react-redux/blob/master/docs/api.md#connectmapstatetoprops-mapdispatchtoprops-mergeprops-options) function has 2 optional arguments:
+teactn mapStateToProps function has 2 optional arguments:
 * state
 * ownProps
 
@@ -15,7 +15,7 @@ const mapStateToProps = (anyOtherName) => {}
 ```
 
 ```js
-connect(function(anyOtherName) {}, null)(App)
+withGlobal(function(anyOtherName) {}, null)(App)
 ```
 
 The following patterns are considered correct:
@@ -33,5 +33,5 @@ const mapStateToProps = ({isActive}) => {isActive}
 ```
 
 ```js
-connect((state) => state, null)(App)
+withGlobal((state) => state, null)(App)
 ```

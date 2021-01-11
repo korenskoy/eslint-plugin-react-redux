@@ -1,4 +1,4 @@
-# Flags generation of copies of same-by-value but different-by-reference props (react-redux/mapStateToProps-prefer-hoisted)
+# Flags generation of copies of same-by-value but different-by-reference props (teactn/mapStateToProps-prefer-hoisted)
 
 Primitives props like strings and numbers are compared by their value, while objects like arrays, dates, and plain objects are compared by their reference.
 
@@ -53,7 +53,7 @@ const mapStateToProps = state => ({
   user: state.user,
   // this is still a bad design because the list prop will be considered
   // updated on every store change but the rule will not flag this.
-  list: [1, 2, state.count] 
+  list: [1, 2, state.count]
 });
 ```
 
