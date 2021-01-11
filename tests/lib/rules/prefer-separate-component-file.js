@@ -18,11 +18,11 @@ ruleTester.run('prefer-separate-component-file', rule, {
   valid: [
     ...codeSamples,
     ` import Component from './component';
-      withGlobal(mapStateToProps, mapDispatchToProps)(Component)`,
+      withGlobal(mapStateToProps, mapReducersToProps)(Component)`,
     `const Component = require('./component')
-     withGlobal(mapStateToProps, mapDispatchToProps)(Component)`,
+     withGlobal(mapStateToProps, mapReducersToProps)(Component)`,
     `import {Component} from './component';
-       withGlobal(mapStateToProps, mapDispatchToProps)(Component)`,
+       withGlobal(mapStateToProps, mapReducersToProps)(Component)`,
   ],
   invalid: [{
     code: `const Component = () => {};

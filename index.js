@@ -1,9 +1,6 @@
 const rules = {
-  'connect-prefer-minimum-two-arguments': require('./lib/rules/connect-prefer-minimum-two-arguments'),
-  'connect-prefer-named-arguments': require('./lib/rules/connect-prefer-named-arguments'),
-  'mapDispatchToProps-prefer-shorthand': require('./lib/rules/mapDispatchToProps-prefer-shorthand'),
-  'mapDispatchToProps-returns-object': require('./lib/rules/mapDispatchToProps-returns-object'),
-  'mapDispatchToProps-prefer-parameters-names': require('./lib/rules/mapDispatchToProps-prefer-parameters-names'),
+  'withGlobal-prefer-minimum-two-arguments': require('./lib/rules/withGlobal-prefer-minimum-two-arguments'),
+  'withGlobal-prefer-named-arguments': require('./lib/rules/withGlobal-prefer-named-arguments'),
   'mapStateToProps-no-store': require('./lib/rules/mapStateToProps-no-store'),
   'mapStateToProps-prefer-hoisted': require('./lib/rules/mapStateToProps-prefer-hoisted'),
   'mapStateToProps-prefer-parameters-names': require('./lib/rules/mapStateToProps-prefer-parameters-names'),
@@ -30,11 +27,8 @@ module.exports = {
     recommended: {
       plugins: ['teactn'],
       rules: {
-        'teactn/connect-prefer-minimum-two-arguments': 0,
-        'teactn/connect-prefer-named-arguments': 2,
-        'teactn/mapDispatchToProps-prefer-parameters-names': 2,
-        'teactn/mapDispatchToProps-prefer-shorthand': 2,
-        'teactn/mapDispatchToProps-returns-object': 2,
+        'teactn/withGlobal-prefer-minimum-two-arguments': 0,
+        'teactn/withGlobal-prefer-named-arguments': 0,
         'teactn/mapStateToProps-no-store': 2,
         'teactn/mapStateToProps-prefer-hoisted': 2,
         'teactn/mapStateToProps-prefer-parameters-names': 2,

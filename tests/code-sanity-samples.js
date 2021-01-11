@@ -1,7 +1,7 @@
 module.exports = [
   'expect(() => useSelector()).toThrow();',
   `const rows = [];
-      function mapStateToProps(state, ownProps) {
+      function mapStateToProps(global, ownProps) {
         for (const { value } of rows) {
         }
       }

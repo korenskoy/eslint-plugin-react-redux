@@ -1,8 +1,8 @@
-#  Enforces that all connect arguments have recommended names. (teactn/connect-prefer-named-arguments)
+#  Enforces that all withGlobal arguments have recommended names. (teactn/withGlobal-prefer-named-arguments)
 
-teactn connect function has 2 optional arguments:
+teactn withGlobal function has 2 optional arguments:
 * mapStateToProps
-* mapDispatchToProps
+* mapReducersToProps
 
 This rule enforces that all of the provided parameters should follow the above naming conventions.
 
@@ -15,13 +15,13 @@ withGlobal(mapStateToProps, actionCreators)(TodoApp)
 ```
 
 ```js
-withGlobal(state => state)(TodoApp)
+withGlobal(global => global)(TodoApp)
 ```
 
 The following patterns are considered correct:
 
 ```js
-withGlobal(mapStateToProps, mapDispatchToProps)(TodoApp)
+withGlobal(mapStateToProps, mapReducersToProps)(TodoApp)
 ```
 
 ```js

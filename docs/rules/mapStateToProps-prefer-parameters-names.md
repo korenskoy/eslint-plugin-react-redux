@@ -1,7 +1,7 @@
 #  Enforces that all mapStateToProps parameters have specific names. (teactn/mapStateToProps-prefer-parameters-names)
 
 teactn mapStateToProps function has 2 optional arguments:
-* state
+* global
 * ownProps
 
 This rule enforces that all of the provided parameters should follow the above naming conventions.
@@ -21,11 +21,11 @@ withGlobal(function(anyOtherName) {}, null)(App)
 The following patterns are considered correct:
 
 ```js
-const mapStateToProps = (state, ownProps) => {}
+const mapStateToProps = (global, ownProps) => {}
 ```
 
 ```js
-const mapStateToProps = (state) => {}
+const mapStateToProps = (global) => {}
 ```
 
 ```js
@@ -33,5 +33,5 @@ const mapStateToProps = ({isActive}) => {isActive}
 ```
 
 ```js
-withGlobal((state) => state, null)(App)
+withGlobal((global) => global, null)(App)
 ```

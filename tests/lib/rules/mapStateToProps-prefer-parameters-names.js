@@ -18,12 +18,12 @@ ruleTester.run('mapStateToProps-prefer-parameters-names', rule, {
   valid: [
     ...codeSamples,
     'const mapStateToProps = ({prop1, prop2}, {ownProp1, ownProp2}) => {}',
-    'const mapStateToProps = (state, ownProps) => {}',
-    'const mapStateToProps = (state) => {}',
-    'const mapStateToProps = (state, ownProps, moreArgs) => {}',
-    'withGlobal((state) => state, null)(App)',
-    'function mapStateToProps(state, ownProps) {}',
-    'withGlobal({state}, null)(App)',
+    'const mapStateToProps = (global, ownProps) => {}',
+    'const mapStateToProps = (global) => {}',
+    'const mapStateToProps = (global, ownProps, moreArgs) => {}',
+    'withGlobal((global) => global, null)(App)',
+    'function mapStateToProps(global, ownProps) {}',
+    'withGlobal({global}, null)(App)',
     'const mapStateToProps = {}',
     'withGlobal(null, null)(App)',
     'const mapStateToProps = ({prop1, prop2}, ownProps) => {}',
@@ -32,14 +32,14 @@ ruleTester.run('mapStateToProps-prefer-parameters-names', rule, {
     code: 'const mapStateToProps = (anyOtherName) => {}',
     errors: [
       {
-        message: 'mapStateToProps function parameter #0 should be named state',
+        message: 'mapStateToProps function parameter #0 should be named global',
       },
     ],
   }, {
     code: 'const mapStateToProps = (anyOtherName, anyOtherName1) => {}',
     errors: [
       {
-        message: 'mapStateToProps function parameter #0 should be named state',
+        message: 'mapStateToProps function parameter #0 should be named global',
       }, {
         message: 'mapStateToProps function parameter #1 should be named ownProps',
       },
@@ -48,7 +48,7 @@ ruleTester.run('mapStateToProps-prefer-parameters-names', rule, {
     code: 'withGlobal(function(anyOtherName) {}, null)(App)',
     errors: [
       {
-        message: 'mapStateToProps function parameter #0 should be named state',
+        message: 'mapStateToProps function parameter #0 should be named global',
       },
     ],
   }],

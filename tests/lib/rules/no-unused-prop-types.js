@@ -69,7 +69,7 @@ ruleTester.run('no-unused-prop-types', rule, {
 
     export default withGlobal(mapStateToProps)(MyComponent);`,
 
-    `export const mapDispatchToProps = (state, ownProps) => ({
+    `export const mapReducersToProps = (state, ownProps) => ({
       myData: getMyData(state, ownProps.myProp),
     });
 

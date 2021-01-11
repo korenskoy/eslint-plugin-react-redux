@@ -1,6 +1,6 @@
 #  Enforces that mapStateToProps does not bind complete store to a component. (teactn/mapStateToProps-no-store)
 
-Passing whole state to a component is a bad practice, triggering unnecessary re-renders. Additionally bad is passing around a mutable object that your component critically depends on preventing mutations to.
+Passing whole global state to a component is a bad practice, triggering unnecessary re-renders. Additionally bad is passing around a mutable object that your component critically depends on preventing mutations to.
 Instead one should specify the properties actually used by a component.
 
 ## Rule details
@@ -8,21 +8,21 @@ Instead one should specify the properties actually used by a component.
 The following patterns are considered incorrect:
 
 ```js
-const mapStateToProps = (state) => state
+const mapStateToProps = (global) => global
 ```
 
 ```js
-const mapStateToProps = state => {
-        return {state: state}
+const mapStateToProps = global => {
+        return {global: global}
       }
 ```
 
 ```js
-const mapStateToProps = state => ({...state});
+const mapStateToProps = global => ({...global});
 ```
 
 ```js
-withGlobal((state) => state, null)(App)
+withGlobal((global) => global, null)(App)
 ```
 
 The following patterns are correct:
@@ -32,7 +32,7 @@ const mapStateToProps = () => {}
 ```
 
 ```js
-const mapStateToProps = (state) => {isActive: state.isActive}
+const mapStateToProps = (global) => {isActive: global.isActive}
 ```
 
 ```js
@@ -40,7 +40,7 @@ const mapStateToProps = ({isActive}) => {isActive}
 ```
 
 ```js
-withGlobal((state) => ({isActive: state.isActive}), null)(App)
+withGlobal((global) => ({isActive: global.isActive}), null)(App)
 ```
 
 ## Not supported use cases.
@@ -50,6 +50,6 @@ Please note that the following use case, although common, is not supported due t
 The following would not warn:
 
 ```js
-const getProps = (state) => state;
-const mapStateToProps = (state) => getProps(state);
+const getProps = (global) => global;
+const mapStateToProps = (global) => getProps(global);
 ```

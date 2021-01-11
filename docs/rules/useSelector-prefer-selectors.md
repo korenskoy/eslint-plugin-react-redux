@@ -7,14 +7,14 @@ Using selectors in `useSelector` to pull data from the store or [compute derived
 The following pattern is considered incorrect:
 
 ```js
-const property = useSelector((state) => state.property)
-const property = useSelector(function (state) { return state.property })
+const property = useSelector((global) => global.property)
+const property = useSelector(function (global) { return global.property })
 ```
 
 The following patterns are considered correct:
 
 ```js
-const selector = (state) => state.property
+const selector = (global) => global.property
 
 function Component() {
   const property = useSelector(selector)

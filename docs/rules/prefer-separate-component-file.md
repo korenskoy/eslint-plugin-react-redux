@@ -15,10 +15,10 @@ The following patterns are considered correct:
 
 ```js
 import Component from './component';
-withGlobal(mapStateToProps, mapDispatchToProps)(Component)
+withGlobal(mapStateToProps, mapReducersToProps)(Component)
 ```
 
 ```js
 const Component = require('./component')
-withGlobal(mapStateToProps, mapDispatchToProps)(Component)
+withGlobal(mapStateToProps, mapReducersToProps)(Component)
 ```

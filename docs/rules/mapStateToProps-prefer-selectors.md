@@ -7,13 +7,13 @@ Using selectors in `mapStateToProps` to pull data from the store or [compute der
 The following pattern is considered incorrect:
 
 ```js
-const mapStateToProps = (state) => { x: state.property }
+const mapStateToProps = (global) => { x: global.property }
 ```
 
 ```js
-withGlobal(function(state) {
+withGlobal(function(global) {
     return {
-        y: state.other.property
+        y: global.other.property
     }
 }, null)(App)
 ```
@@ -21,15 +21,15 @@ withGlobal(function(state) {
 The following patterns are considered correct:
 
 ```js
-const propertySelector = (state) => state.property
-const mapStateToProps = (state) => { x: propertySelector(state) }
+const propertySelector = (global) => global.property
+const mapStateToProps = (global) => { x: propertySelector(global) }
 ```
 
 ```js
-const getOtherProperty = (state) => state.other.property
-withGlobal(function(state) {
+const getOtherProperty = (global) => global.other.property
+withGlobal(function(global) {
     return {
-        y: getOtherProperty(state)
+        y: getOtherProperty(global)
     }
 }, null)(App)
 ```
@@ -55,9 +55,9 @@ If provided, validates the name of the selector functions against the RegExp pat
     }
 
     // container.js
-    const mapStateToProps = (state) => {
-        x: xSelector(state), // success
-        y: selectY(state), // failure
+    const mapStateToProps = (global) => {
+        x: xSelector(global), // success
+        y: selectY(global), // failure
     }
 ```
 
@@ -68,14 +68,14 @@ If provided, validates the name of the selector functions against the RegExp pat
     }
 
     // container.js
-    const mapStateToProps = (state) => {
-        x: getXFromState(state), // success
-        y: getY(state), // failure
+    const mapStateToProps = (global) => {
+        x: getXFromState(global), // success
+        y: getY(global), // failure
     }
 ```
 
 ### `validateParams`
-Boolean to determine if the selectors use the correct params (`<selectorFunction>(state, ownProps)`, where both params are optional). Defaults to true.
+Boolean to determine if the selectors use the correct params (`<selectorFunction>(global, ownProps)`, where both params are optional). Defaults to true.
 
 ```js
     // .eslintrc
@@ -84,11 +84,11 @@ Boolean to determine if the selectors use the correct params (`<selectorFunction
     }
 
     // container.js
-    const mapStateToProps = (state, ownProps) => {
-        x: xSelector(state), // success
-        y: ySelector(state, ownProps), // sucess
+    const mapStateToProps = (global, ownProps) => {
+        x: xSelector(global), // success
+        y: ySelector(global, ownProps), // sucess
         z: zSelector(), // success
-        a: aSelector(ownProps, state), // failure
-        b: bSelector(state, someOtherValue) // failure
+        a: aSelector(ownProps, global), // failure
+        b: bSelector(global, someOtherValue) // failure
     }
 ```
