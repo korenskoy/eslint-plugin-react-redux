@@ -1,18 +1,9 @@
 require('babel-eslint');
 
-const rule = require('../../../lib/rules/no-unused-prop-types');
 const RuleTester = require('eslint').RuleTester;
+const rule = require('../../../lib/rules/no-unused-prop-types');
 const codeSamples = require('../../code-sanity-samples');
-
-const parserOptions = {
-  ecmaVersion: 6,
-  sourceType: 'module',
-  ecmaFeatures: {
-    experimentalObjectRestSpread: true,
-    jsx: true,
-  },
-};
-
+const parserOptions = require('../../parser-options');
 
 const ruleTester = new RuleTester({ parserOptions });
 

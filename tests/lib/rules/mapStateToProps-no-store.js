@@ -1,16 +1,9 @@
 require('babel-eslint');
 
-const rule = require('../../../lib/rules/mapStateToProps-no-store');
 const RuleTester = require('eslint').RuleTester;
+const rule = require('../../../lib/rules/mapStateToProps-no-store');
 const codeSamples = require('../../code-sanity-samples');
-
-const parserOptions = {
-  ecmaVersion: 6,
-  sourceType: 'module',
-  ecmaFeatures: {
-    experimentalObjectRestSpread: true,
-  },
-};
+const parserOptions = require('../../parser-options');
 
 const ruleTester = new RuleTester({ parserOptions });
 

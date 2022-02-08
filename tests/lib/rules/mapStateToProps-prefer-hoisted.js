@@ -1,16 +1,9 @@
 require('babel-eslint');
 
-const rule = require('../../../lib/rules/mapStateToProps-prefer-hoisted');
 const RuleTester = require('eslint').RuleTester;
+const rule = require('../../../lib/rules/mapStateToProps-prefer-hoisted');
 const codeSamples = require('../../code-sanity-samples');
-
-const parserOptions = {
-  ecmaVersion: 6,
-  sourceType: 'module',
-  ecmaFeatures: {
-    experimentalObjectRestSpread: true,
-  },
-};
+const parserOptions = require('../../parser-options');
 
 const errorMessage = 'constant arrays and objects should be initialized outside of mapStateToProps';
 

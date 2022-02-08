@@ -1,16 +1,9 @@
 require('babel-eslint');
 
-const rule = require('../../../lib/rules/withGlobal-prefer-named-arguments');
 const RuleTester = require('eslint').RuleTester;
+const rule = require('../../../lib/rules/withGlobal-prefer-named-arguments');
 const codeSamples = require('../../code-sanity-samples');
-
-const parserOptions = {
-  ecmaVersion: 6,
-  sourceType: 'module',
-  ecmaFeatures: {
-    experimentalObjectRestSpread: true,
-  },
-};
+const parserOptions = require('../../parser-options');
 
 const ruleTester = new RuleTester({ parserOptions });
 
