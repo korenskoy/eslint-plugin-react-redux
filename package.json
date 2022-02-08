@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-teactn",
-  "version": "0.0.0-development",
+  "version": "0.1.0-development",
   "description": "Enforcing best practices for teactn (originally was eslint-plugin-react-redux)",
   "keywords": [
     "eslint",
