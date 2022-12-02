@@ -71,17 +71,17 @@ ruleTester.run('mapStateToProps-prefer-hoisted', rule, {
         a: x
       };
     }`,
-    'const mapStateToProps = (state, ownProps) => {}',
+    'const mapStateToProps = (state, sharedGlobal, ownProps) => {}',
     'const mapStateToProps = (state) => {set: [1, 2, 3, state.a]}',
-    `const mapStateToProps = (state, ownProps) => {};
+    `const mapStateToProps = (state, sharedGlobal, ownProps) => {};
       withGlobal(mapStateToProps, null)(Alert);`,
     `const mapStateToProps = ({ header }) => ({
       isLoggedIn: header.user && header.user.isLoggedIn,
     }); `,
-    'const mapStateToProps = ({header}, ownProps) => {header};',
-    'withGlobal(({header}, ownProps) => {header})(App);',
+    'const mapStateToProps = ({header}, sharedGlobal, ownProps) => {header};',
+    'withGlobal(({header}, sharedGlobal, ownProps) => {header})(App);',
     'withGlobal(({header}, {ownProp1}) => {header, ownProp1})(App);',
-    `const mapStateToProps = ({header}, ownProps) => {
+    `const mapStateToProps = ({header}, sharedGlobal, ownProps) => {
       return {
         props: {
           header,

@@ -10,9 +10,9 @@ const ruleTester = new RuleTester({ parserOptions });
 ruleTester.run('no-unused-prop-types', rule, {
   valid: [
     ...codeSamples,
-    `export const mapStateToProps = (state, ownProps) => {
+    `export const mapStateToProps = (state, sharedGlobal, ownProps) => {
       const { myProp } = ownProps;
-      return { myData: getMyData(state, myProp)};
+      return { myData: getMyData(state, sharedGlobal, myProp)};
     }
 
     export class MyComponent extends Component {
@@ -27,9 +27,9 @@ ruleTester.run('no-unused-prop-types', rule, {
 
     export default withGlobal(mapStateToProps)(MyComponent);`,
 
-    `export const mapStateToProps = (state, ownProps) => {
+    `export const mapStateToProps = (state, sharedGlobal, ownProps) => {
       const myProp = ownProps.myProp;
-      return { myData: getMyData(state, myProp)};
+      return { myData: getMyData(state, sharedGlobal, myProp)};
     }
 
     export class MyComponent extends Component {
@@ -44,8 +44,8 @@ ruleTester.run('no-unused-prop-types', rule, {
 
     export default withGlobal(mapStateToProps)(MyComponent);`,
 
-    `export const mapStateToProps = (state, ownProps) => ({
-      myData: getMyData(state, ownProps.myProp),
+    `export const mapStateToProps = (state, sharedGlobal, ownProps) => ({
+      myData: getMyData(state, sharedGlobal, ownProps.myProp),
     });
 
     export class MyComponent extends Component {
@@ -60,8 +60,8 @@ ruleTester.run('no-unused-prop-types', rule, {
 
     export default withGlobal(mapStateToProps)(MyComponent);`,
 
-    `export const mapReducersToProps = (state, ownProps) => ({
-      myData: getMyData(state, ownProps.myProp),
+    `export const mapReducersToProps = (state, sharedGlobal, ownProps) => ({
+      myData: getMyData(state, sharedGlobal, ownProps.myProp),
     });
 
     export class MyComponent extends Component {
@@ -75,8 +75,8 @@ ruleTester.run('no-unused-prop-types', rule, {
     };
 
     export default withGlobal(mapStateToProps)(MyComponent);`,
-    `export const mapStateToProps = (state, {myProp}) => ({
-      myData: getMyData(state, myProp.z),
+    `export const mapStateToProps = (state, sharedGlobal, {myProp}) => ({
+      myData: getMyData(state, sharedGlobal, myProp.z),
     });
 
     export class MyComponent extends Component {
@@ -149,8 +149,8 @@ ruleTester.run('no-unused-prop-types', rule, {
       },
     ],
   }, {
-    code: `export const mapStateToProps = (state, ownProps) => ({
-      myData: getMyData(state, ownProps.myProp),
+    code: `export const mapStateToProps = (state, sharedGlobal, ownProps) => ({
+      myData: getMyData(state, sharedGlobal, ownProps.myProp),
     });
 
     export class MyComponent extends Component {
@@ -172,7 +172,7 @@ ruleTester.run('no-unused-prop-types', rule, {
       },
     ],
   }, {
-    code: `export const mapStateToProps = ({aState}, ownProps) => ({
+    code: `export const mapStateToProps = ({aState}, sharedGlobal, ownProps) => ({
       myData: getMyData(aState),
     });
 
@@ -194,8 +194,8 @@ ruleTester.run('no-unused-prop-types', rule, {
       },
     ],
   }, {
-    code: `export const mapStateToProps = (state, {myProp}) => ({
-      myData: getMyData(state, myProp),
+    code: `export const mapStateToProps = (state, sharedGlobal, {myProp}) => ({
+      myData: getMyData(state, sharedGlobal, myProp),
     });
 
     export class MyComponent extends Component {
@@ -217,9 +217,9 @@ ruleTester.run('no-unused-prop-types', rule, {
       },
     ],
   }, {
-    code: `export const mapStateToProps = (state, ownProps) => {
+    code: `export const mapStateToProps = (state, sharedGlobal, ownProps) => {
       const { myProp } = ownProps;
-      return { myData: getMyData(state, myProp)};
+      return { myData: getMyData(state, sharedGlobal, myProp)};
     }
 
     export class MyComponent extends Component {

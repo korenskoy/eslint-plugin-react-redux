@@ -13,7 +13,7 @@ ruleTester.run('mapStateToProps-prefer-selectors', rule, {
     'const mapStateToProps = (state) => 1',
     'const mapStateToProps = (state) => ({})',
     'const mapStateToProps = (state) => ({ x: xSelector(state) })',
-    'const mapStateToProps = (state, ownProps) => ({ x: xSelector(state, ownProps) })',
+    'const mapStateToProps = (state, sharedGlobal, ownProps) => ({ x: xSelector(state, sharedGlobal, ownProps) })',
     'const mapStateToProps = (state) => ({ x: xSelector(state), y: ySelector(state) })',
     'const mapStateToProps = (state) => { return { x: xSelector(state) }; }',
     'const mapStateToProps = (state) => { doSomethingElse(); return { x: xSelector(state) }; }',
@@ -23,9 +23,9 @@ ruleTester.run('mapStateToProps-prefer-selectors', rule, {
     'const mapStateToProps = () => ({ x: xSelector() })',
     'const mapStateToProps = function(state) { return { x: getX() }; }',
     'const mapStateToProps = function(state) { return { x: getX(state) }; }',
-    'withGlobal((state, ownProps) => ({ x: selector() }), {})(Comp)',
-    'withGlobal((state, ownProps) => ({ x: selector(state) }), {})(Comp)',
-    'withGlobal((state, ownProps) => ({ x: selector(state, ownProps) }), {})(Comp)',
+    'withGlobal((state, sharedGlobal, ownProps) => ({ x: selector() }), {})(Comp)',
+    'withGlobal((state, sharedGlobal, ownProps) => ({ x: selector(state) }), {})(Comp)',
+    'withGlobal((state, sharedGlobal, ownProps) => ({ x: selector(state, sharedGlobal, ownProps) }), {})(Comp)',
     {
       code: 'const mapStateToProps = (state) => ({ x: xSelector(state) })',
       options: [{
@@ -152,9 +152,10 @@ ruleTester.run('mapStateToProps-prefer-selectors', rule, {
       message: 'mapStateToProps "x"\'s selector "xSelector" parameter #1 is not expected.',
     }],
   }, {
-    code: 'const mapStateToProps = (state, ownProps) => ({ x: xSelector(state, ownProps, someOtherValue) })',
+    // eslint-disable-next-line max-len
+    code: 'const mapStateToProps = (state, sharedGlobal, ownProps) => ({ x: xSelector(state, sharedGlobal, ownProps, someOtherValue) })',
     errors: [{
-      message: 'mapStateToProps "x"\'s selector "xSelector" parameter #2 is not expected.',
+      message: 'mapStateToProps "x"\'s selector "xSelector" parameter #3 is not expected.',
     }],
   }, {
     code: 'const mapStateToProps = function(state) { return { x: getX(notState) }; }',
@@ -162,19 +163,19 @@ ruleTester.run('mapStateToProps-prefer-selectors', rule, {
       message: 'mapStateToProps "x"\'s selector "getX" parameter #0 should be "state".',
     }],
   }, {
-    code: 'withGlobal((state, ownProps) => ({ x: getX(state, notOwnProps) }), {})(Comp)',
+    code: 'withGlobal((state, sharedGlobal, ownProps) => ({ x: getX(state, sharedGlobal, notOwnProps) }), {})(Comp)',
     errors: [{
-      message: 'mapStateToProps "x"\'s selector "getX" parameter #1 should be "ownProps".',
+      message: 'mapStateToProps "x"\'s selector "getX" parameter #2 should be "ownProps".',
     }],
   }, {
-    code: 'withGlobal((state2, ownProps) => ({ x: getX(state) }), {})(Comp)',
+    code: 'withGlobal((state2, sharedGlobal, ownProps) => ({ x: getX(state) }), {})(Comp)',
     errors: [{
       message: 'mapStateToProps "x"\'s selector "getX" parameter #0 should be "state2".',
     }],
   }, {
-    code: 'withGlobal((state, ownProps2) => ({ x: getX(state, ownProps) }), {})(Comp)',
+    code: 'withGlobal((state, sharedGlobal, ownProps2) => ({ x: getX(state, sharedGlobal, ownProps) }), {})(Comp)',
     errors: [{
-      message: 'mapStateToProps "x"\'s selector "getX" parameter #1 should be "ownProps2".',
+      message: 'mapStateToProps "x"\'s selector "getX" parameter #2 should be "ownProps2".',
     }],
   }],
 
